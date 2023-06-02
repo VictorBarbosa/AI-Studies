@@ -1,0 +1,16 @@
+description: Ultralytics YOLOv8x-cls model trained on dataset-cars-sides
+author: Ultralytics
+license: GPL-3.0 https://ultralytics.com/license
+version: 8.0.51
+stride: 1
+task: classify
+batch: 1
+imgsz:
+- 224
+- 224
+names:
+  0: Back
+  1: Cannot Identify
+  2: Diagonal
+  3: Front
+  4: Side
