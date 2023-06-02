@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="image-container">
+    <div class="image">
+      <img #cont width="224" src="assets/cont.jpeg" alt="">
+      <input hidden accept=".jpg,.jpeg" type="file" #filePic (change)="fileUploadPicture($event)" />
+
+      <ion-button (click)="clickFileUploadPicute()">Upload File </ion-button>
+    </div>
+    <div class="image">
+      <img #style width="224" [src]="selected" alt="">
+      <input hidden accept=".jpg,.jpeg" type="file" #fileStyle (change)="fileUploadStyle($event)" />
+      <select [(ngModel)]="selected">
+        <option *ngFor="let img of images" [value]="img.img"> {{img.label}} </option>
+        <option value="fileUpload"> Upload File </option>
+      </select>
+    </div>
+
+  </div>
+  <div class="container-result">
+    <canvas #canv></canvas>
+    <div class="buttons-alignment">
+      <ion-button (click)="apply()">Apply</ion-button>
+      <ion-button (click)="downloadPicture()">Download</ion-button>
+    </div>
+  </div>
+</div>

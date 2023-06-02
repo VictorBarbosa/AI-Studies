@@ -1,0 +1,17 @@
+<div id="container">
+  <div style=" display: flex; flex-direction: column;align-items: center;">
+    <img #img />
+    <div class="img-container">
+      <img   *ngFor="let index = index  ; let item of images;" [style]="item.rotate" [src]="item.img.src" />
+
+    </div>
+  </div>
+  <div class="buttons alingment">
+    <app-image-uploder [multiple]="true" (srcImageChange)="imageLoad($event)"></app-image-uploder>
+    <ion-button   (click)="trainModel()"> Train</ion-button>
+  </div>
+
+
+</div>
+
+{{images|json}}

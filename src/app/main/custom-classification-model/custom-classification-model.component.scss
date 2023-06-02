@@ -1,0 +1,17 @@
+.img-container {
+  display: contents;
+  img {
+    max-width: 100%;
+    width: 244px;
+    position: absolute;
+    height: 244px;
+  }
+}
+.alingment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: stretch;
+}

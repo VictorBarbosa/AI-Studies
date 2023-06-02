@@ -1,0 +1,77 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+select {
+  background: var(--ion-color-primary, #3880ff);
+  color: var(--ion-color-primary-contrast, #fff);
+  height: 35px;
+  border: 0px;
+  border-radius: 5px;
+  margin-top: 5px;
+
+  --border-radius: 4px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 1.1em;
+  --padding-end: 1.1em;
+  --transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), background-color 15ms linear, color 15ms linear;
+  margin-inline: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+#container {
+  height: calc(100vh - 56px);
+}
+.buttons {
+  bottom: 0px;
+  background: white;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+ion-button{
+  // width: auto;
+ }
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 660px) {
+ img{
+  max-width: 60%;
+ }
+ ion-button{
+  width: 100%;
+ }
+}

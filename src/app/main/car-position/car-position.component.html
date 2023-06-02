@@ -1,0 +1,19 @@
+<div id="container">
+  <div style=" display: flex; flex-direction: column;align-items: center;">
+    <img #img />
+    <div>
+      <table>
+        <tr *ngFor="let item of position">
+          <td> {{item.name}}</td>
+          <td> {{item.probability}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="buttons">
+      <input hidden accept=".jpg,.jpeg" type="file" #file (change)="pictureUpload($event)" />
+      <ion-button (click)="clickFileUpload()">Upload File </ion-button>
+    </div>
+
+
+</div>
