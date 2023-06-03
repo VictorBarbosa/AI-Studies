@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng build --output-path ./root --base-href=AI-Studies --configuration \"development\" && npx angular-cli-ghpages --dir=root"
+    "deploy": "ng build --output-path ./root --base-href=../AI-Studies/ && npx angular-cli-ghpages --dir=root"
   },
   "private": true,
   "dependencies": {
