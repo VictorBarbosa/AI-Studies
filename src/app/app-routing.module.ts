@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 export  const AppPagesPaths = [
-  { title: 'Car Position', url: 'app-car-position', icon: 'mail' },
-  { title: 'Car Brand Detected', url: 'app-car-brand-detected', icon: 'mail' },
-  { title: 'Style Transfer', url: 'app-style-transfer', icon: 'mail' },
-  { title: 'Object detected', url: 'app-object-detected', icon: 'mail' },
-  { title: 'Image Reconstructor', url: 'app-image-reconstructor', icon: 'mail' },
-  { title: 'Custom Image Classification', url: 'app-custom-image-classification', icon: 'mail' },
-  { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-  { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-  { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-  { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-  { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-  { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+  { title: 'Car Position (Custom model)', url: 'app-car-position', icon: '' },
+  { title: 'Car Brand Detected (Custom model)', url: 'app-car-brand-detected', icon: '' },
+  { title: 'Style Transfer (Tensorflow Model)', url: 'app-style-transfer', icon: '' },
+  { title: 'Object detected (Coco model)', url: 'app-object-detected', icon: '' },
+  // { title: 'Image Reconstructor', url: 'app-image-reconstructor', icon: 'mail' },
+  // { title: 'Custom Image Classification', url: 'app-custom-image-classification', icon: 'mail' },
+  // { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
+  // { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
+  // { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
+  // { title: 'Archived', url: '/folder/archived', icon: 'archive' },
+  // { title: 'Trash', url: '/folder/trash', icon: 'trash' },
+  // { title: 'Spam', url: '/folder/spam', icon: 'warning' },
 ];
 
 
@@ -34,11 +34,11 @@ const routes: Routes = [
         loadComponent: () =>
           import('./main/custom-classification-model/custom-classification-model.component').then((m) => m.CustomClassificationModelComponent),
       },
-      // {
-      //   path: 'app-car-brand-detected',
-      //   loadComponent: () =>
-      //     import('./car-brand-detected/car-brand-detected.component').then((m) => m.CarBrandDetectedComponent),
-      // },
+      {
+        path: 'app-car-brand-detected',
+        loadComponent: () =>
+          import('./main/car-brand-detected/car-brand-detected.component').then((m) => m.CarBrandDetectedComponent),
+      },
       {
         path: 'app-style-transfer',
         loadComponent: () =>
@@ -58,11 +58,16 @@ const routes: Routes = [
     ]
 
   },
-  {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
+ {
+  path:'AI-Studies/AI-Studies/',
+  redirectTo:'',
+  pathMatch: 'full'
+ },
+ {
+  path:'AI-Studies/',
+  redirectTo:'',
+  pathMatch: 'full'
+ }
 
 ];
 

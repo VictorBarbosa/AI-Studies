@@ -4,7 +4,9 @@ import { IonicModule } from '@ionic/angular';
 import * as tf from '@tensorflow/tfjs'
 
 import { BehaviorSubject, distinctUntilChanged, shareReplay } from 'rxjs';
-
+import { getResult } from '../../common/common';
+import * as coco from '@tensorflow-models/coco-ssd';
+import { ObjectDetection } from '@tensorflow-models/coco-ssd';
 @Component({
   selector: 'app-object-detected',
   templateUrl: './object-detected.component.html',
@@ -13,13 +15,17 @@ import { BehaviorSubject, distinctUntilChanged, shareReplay } from 'rxjs';
   imports: [IonicModule, CommonModule],
   providers: []
 })
-export class ObjectDetectedComponent   implements OnInit {
-  model: tf.GraphModel<string | tf.io.IOHandler> | tf.LayersModel | null = null;
+export class ObjectDetectedComponent implements OnInit {
+  model: ObjectDetection | null = null;
 
   /**
  * img
  */
   @ViewChild('img', { static: true }) img: ElementRef<HTMLImageElement> | null = null;
+  /**
+ * img
+ */
+  @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement> | null = null;
 
   /**
    * video
@@ -71,17 +77,11 @@ export class ObjectDetectedComponent   implements OnInit {
     }
   }
 
-  constructor(   ) {
 
-    const mod = "assets/hub_mod/model.json";
-    tf.loadGraphModel("https://storage.googleapis.com/tfjs-models/savedmodel/model.json", { fromTFHub: true }).then(async x => {
+  constructor() {
+    coco.load().then(x => {
       this.model = x;
     });
-
-    // tf.loadGraphModel('assets/yolov8x_web_model/model.json').then(async x => {
-    //   this.model = x;
-    // });
-
   }
 
 
@@ -107,42 +107,45 @@ export class ObjectDetectedComponent   implements OnInit {
 
   predict(base64: string) {
     const model = this.model;
-    const img = new Image(224, 224);
+    const img = new Image(600, 400);
     img.onload = () => {
       if (model) {
-        const pre_image = tf.tidy(() => {
-          return tf.browser.fromPixels(img, 3)
-            // .resizeNearestNeighbor([224, 224])
-            .toFloat()
 
-            // .div(tf.scalar(255.0))
-            .expandDims();
+        this.model?.detect(img).then(result => {
+
+          if (this.canvas?.nativeElement) {
+
+
+            const canvas = this.canvas?.nativeElement;
+            const color = ["red", "green", "blue"]
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const context = canvas.getContext('2d');
+            if (context) {
+
+              context.drawImage(img, 0, 0, img.width, img.height);
+              context.font = '40px Arial';
+
+              for (let i = 0; i < result.length; i++) {
+                context.beginPath();
+                context.rect(...result[i].bbox);
+                context.lineWidth = 5;
+                context.strokeStyle = color[i % 3];
+                context.fillStyle = color[i % 3];
+                context.stroke();
+                context.fillText(
+                  result[i].score.toFixed(3) + ' ' + result[i].class,
+                  result[i].bbox[0],
+                  result[i].bbox[1] - 5);
+              }
+            }
+
+            this.position = result;
+          }
+
+
+
         });
-
-
-
-
-        const result = model.predict(pre_image)
-
-
-        debugger
-        const data = (result as any).dataSync()
-
-
-
-
-        // const detection_boxes = data[0].toFloat().softmax().dataSync();
-        // const detection_class_entities = data[1].dataSync();
-        // const detection_class_names = data[2].toString();
-        // const detection_class_labels = data[3].dataSync();
-        // const detection_scores = data[4].softmax().dataSync();
-
-        debugger
-
-        // this.predict2(img, result)
-        // const ret = getResult(tf.softmax(result).dataSync(), OBJECT_CLASSES)
-
-
 
       }
     }
@@ -156,4 +159,9 @@ export class ObjectDetectedComponent   implements OnInit {
   clickFileUpload() {
     this.file?.nativeElement.click();
   }
+
+
+
 }
+
+

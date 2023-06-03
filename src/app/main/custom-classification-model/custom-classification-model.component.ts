@@ -73,7 +73,7 @@ export class CustomClassificationModelComponent implements OnInit {
 
       let rotate = `transform:rotate(${(index * 2) + 90}deg)`
       if ((files.length - 1) === index) {
-        debugger
+        
         rotate = `transform:rotate(0deg)`
       }
 
@@ -90,7 +90,7 @@ export class CustomClassificationModelComponent implements OnInit {
   }
 
   trainModel() {
-    debugger
+    
     const image = (this.images?.map(x => x?.tensorImage) as any) as tf.Tensor<tf.Rank>
     if (image!==undefined) {
 
@@ -121,12 +121,12 @@ export class CustomClassificationModelComponent implements OnInit {
         loss: tf.losses.meanSquaredError,
         metrics: ['accuracy']
       })
-      debugger
+      
 
 
       model.summary();
       model.fit(image, image, { epochs: 5 }).then(x => {
-        debugger
+        
       })
     }
   }

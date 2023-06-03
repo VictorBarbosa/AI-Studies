@@ -26,7 +26,7 @@ export class CurrentPageService {
     if (router) {
       const title = AppPagesPaths.find(x => x.url === router.url.replace("/", ""))?.title
       if (title) {
-        debugger
+        
         this.pageCurrent = title
       }
     }

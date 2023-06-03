@@ -74,7 +74,7 @@ export class CarPositionService {
           .expandDims()
         if (model) {
           (model.execute(pre_image) as any).data().then((predictions: Float32Array) => {
-            debugger
+            
             let rss = tf.softmax(predictions).dataSync()
             var res = this.getPredictedClass(predictions)
             o.next(res);
