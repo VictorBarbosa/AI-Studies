@@ -126,13 +126,12 @@ export class CarBrandDetectedComponent implements OnInit {
     }
   }
 
-
   /**
    * Constructor
    */
   constructor(private plataform: Platform) {
-    this._modelPredictCarDirection.next(new ModelCarBrand('assets/car_position/model.json', CarDirection))
-    this._modelPredictCarBrand.next(new ModelCarBrand('assets/carBrand/model.json', CarsBrands))
+    this._modelPredictCarDirection.next(new ModelCarBrand('car-position', CarDirection))
+    this._modelPredictCarBrand.next(new ModelCarBrand('car-brand', CarsBrands))
 
 
   }

@@ -35,7 +35,8 @@ export class CarPositionService {
    *
    */
   constructor() {
-    tf.loadGraphModel('assets/car_position/model.json').then(model => {
+    const localStorageModel = `indexeddb://car-position`
+    tf.loadGraphModel(localStorageModel).then(model => {
       this._model.next(model);
     });
   }

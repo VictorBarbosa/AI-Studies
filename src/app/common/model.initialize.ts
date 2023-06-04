@@ -29,26 +29,23 @@ export abstract class ModelInitialize {
 
   /**
    * Initialize model trained
-   * @param modelPath Path where is a model
    */
-
-
-  constructor(modelPath: string) {
-    tf.loadGraphModel(modelPath, {
+  constructor(modelNomde: string) {
+    const localStorageModel = `indexeddb://${modelNomde}`
+    tf.loadGraphModel(localStorageModel, {
       onProgress: (fraction: number) => {
         console.log(fraction)
       },
-    }).then((mod: any) => {
-      this._model.next(mod);
-    }).catch(() => {
-
-    });
+    }).then(model => {
+      this._model.next(model);
+    })
   }
 
   /**
    * Clear the memory
    */
   public dispose(): void {
+
     this._model.complete();
     this._model.unsubscribe();
   }

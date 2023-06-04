@@ -69,7 +69,8 @@ export class StyleTransferComponent implements OnInit {
     }
   }
   constructor() {
-    tf.loadGraphModel('assets/StyleTranfer/model.json',).then(x => {
+    const localStorageModel = `indexeddb://style-transfer`
+    tf.loadGraphModel(localStorageModel).then(x => {
       this.model = x;
       this.apply()
     })

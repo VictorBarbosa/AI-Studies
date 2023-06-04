@@ -36,8 +36,8 @@ export class ModelCarBrand extends ModelInitialize {
   }
 
 
-  constructor(modelCarBrandPath: string, private classes: string[], private imageShapeX: number = 224, private imageShapeY: number = 224) {
-    super(modelCarBrandPath);
+  constructor(private modelNomde:string ,private classes: string[], private imageShapeX: number = 224, private imageShapeY: number = 224) {
+    super(modelNomde);
     this._classAndProbability.next(new ClasseAndProbability(classes))
   }
 
